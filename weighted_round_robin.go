@@ -1,4 +1,4 @@
-package WeightedRoundRobin
+package wrr
 
 import "sync"
 
@@ -65,6 +65,10 @@ func (this *weightedRoundRobin) getMaxGcdForServices() int {
 
 func (this *weightedRoundRobin) getService() Service {
 	for {
+		if len(this.Services) == 0 {
+			return nil
+		}
+
 		this.lastId = (this.lastId + 1) % len(this.Services)
 		if this.lastId == 0 {
 			this.cw = this.cw - this.getMaxGcdForServices()

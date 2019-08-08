@@ -1,4 +1,4 @@
-package WeightedRoundRobin
+package wrr
 
 import (
 	"fmt"
